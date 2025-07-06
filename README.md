@@ -4,12 +4,13 @@ A GNU coreutils `timeout` compatible utility for running commands with a timeout
 
 [![GitHub](https://img.shields.io/badge/GitHub-nzions%2Ftimeout-blue)](https://github.com/nzions/timeout)
 [![Go Report Card](https://goreportcard.com/badge/github.com/nzions/timeout)](https://goreportcard.com/report/github.com/nzions/timeout)
-[![codecov](https://codecov.io/gh/nzions/timeout/branch/master/graph/badge.svg)](https://codecov.io/gh/nzions/timeout)
 [![License: CC0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
+
+> **Note:** This project does not use automated CI/CD or GitHub Actions because, frankly, I couldn't figure out how to get macOS builds working reliably on GitHub-hosted runners. All builds and tests should be run locally on macOS for best results. Binaries for other platforms are experimental and untested.
 
 ## Features
 
-- **100% GNU Compatibility**: Drop-in replacement for GNU coreutils `timeout`
+- **GNU-ish Compatibility**: Aims to be a drop-in replacement for GNU coreutils `timeout`. If you find a difference, please open an issue.
 - **macOS Native**: Fully tested and optimized for macOS
 - **Zero Dependencies**: Single binary with no external dependencies
 - **Signal Handling**: Supports custom signals and signal escalation
@@ -81,7 +82,7 @@ Supports both numeric signals and named signals (with or without SIG prefix):
 
 ## GNU Compatibility
 
-This implementation is 100% compatible with GNU coreutils `timeout`, including:
+This implementation is compatible with GNU coreutils `timeout`, including:
 - All command-line options
 - Duration parsing with suffixes
 - Signal handling and escalation
@@ -90,27 +91,27 @@ This implementation is 100% compatible with GNU coreutils `timeout`, including:
 
 ## Testing
 
-The timeout utility includes comprehensive unit and integration tests:
+The timeout utility includes comprehensive unit and integration tests.
 
 ```bash
-# Run all tests
+# Run all tests (make sure you have coffee, some tests wait for timeouts)
 go test -v
 
-# Run tests with coverage
+# Run tests with coverage (for the coverage badge you can't see)
 go test -cover
 
-# Run benchmarks
+# Run benchmarks (for when you want to see how fast you can kill things)
 go test -bench=.
 
-# Run specific test
+# Run specific test (for the control freaks)
 go test -run TestParseDuration
 ```
 
 ### Test Coverage
 
-- **Unit Tests**: Test duration parsing, signal parsing, edge cases
-- **Integration Tests**: Test actual timeout behavior, command execution, signal handling
-- **Benchmarks**: Performance testing for parsing functions
+- **Unit Tests**: Test duration parsing, signal parsing, edge cases, and your patience
+- **Integration Tests**: Test actual timeout behavior, command execution, signal handling, and your shell's willingness to cooperate
+- **Benchmarks**: Performance testing for parsing functions (because why not?)
 
 Test files:
 - `timeout_test.go` - Unit tests for parsing functions
@@ -130,9 +131,8 @@ This will download, compile, and install the latest version to your `$GOPATH/bin
 
 ### Manual Installation
 
-Alternatively, you can download pre-built binaries from the [releases page](https://github.com/nzions/timeout/releases).
+There are currently no official pre-built binaries. To use this tool, please build it from source using the instructions below.
 
-> **Platform Support**: Pre-built binaries are provided for macOS (tested), with experimental builds for Linux and Windows (untested).
 
 ## Building from Source
 
