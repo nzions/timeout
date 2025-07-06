@@ -1,0 +1,60 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: 1.22
+    
+    - name: Build for macOS (primary platform)
+      run: |
+        GOOS=darwin GOARCH=amd64 go build -ldflags="-s -w" -o timeout-darwin-amd64
+        GOOS=darwin GOARCH=arm64 go build -ldflags="-s -w" -o timeout-darwin-arm64
+    
+    - name: Build experimental versions (untested)
+      run: |
+        GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o timeout-linux-amd64
+        GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -o timeout-windows-amd64.exe
+    
+    - name: Create checksums
+      run: |
+        sha256sum timeout-* > checksums.txt
+    
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          timeout-*
+          checksums.txt
+        body: |
+          ## Changes
+          
+          See [CHANGELOG.md](CHANGELOG.md) for details.
+          
+          ## Platform Support
+          
+          - **macOS**: Fully tested and supported (Intel and Apple Silicon)
+          - **Linux**: Experimental build (untested)
+          - **Windows**: Experimental build (untested)
+          
+          ## Installation
+          
+          Download the appropriate binary for your platform and put it in your PATH.
+          
+          For macOS users, you can also install directly with Go:
+          ```bash
+          go install github.com/nzions/timeout@${{ github.ref_name }}
+          ```
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

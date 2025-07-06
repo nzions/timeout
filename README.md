@@ -4,16 +4,19 @@ A GNU coreutils `timeout` compatible utility for running commands with a timeout
 
 [![GitHub](https://img.shields.io/badge/GitHub-nzions%2Ftimeout-blue)](https://github.com/nzions/timeout)
 [![Go Report Card](https://goreportcard.com/badge/github.com/nzions/timeout)](https://goreportcard.com/report/github.com/nzions/timeout)
+[![codecov](https://codecov.io/gh/nzions/timeout/branch/main/graph/badge.svg)](https://codecov.io/gh/nzions/timeout)
 [![License: CC0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
 
 ## Features
 
 - **100% GNU Compatibility**: Drop-in replacement for GNU coreutils `timeout`
-- **Cross-Platform**: Works on Linux, macOS, and Windows
+- **macOS Native**: Fully tested and optimized for macOS
 - **Zero Dependencies**: Single binary with no external dependencies
 - **Signal Handling**: Supports custom signals and signal escalation
 - **Flexible Duration**: Supports seconds, minutes, hours, and days
-- **Comprehensive Testing**: Extensive unit and integration test coverage
+- **Comprehensive Testing**: Extensive unit and integration test coverage on macOS
+
+> **Note**: This utility is primarily developed and tested on macOS. It may work on Linux and Windows due to Go's cross-platform nature, but these platforms are currently untested and unsupported.
 
 ## Usage
 
@@ -129,6 +132,8 @@ This will download, compile, and install the latest version to your `$GOPATH/bin
 
 Alternatively, you can download pre-built binaries from the [releases page](https://github.com/nzions/timeout/releases).
 
+> **Platform Support**: Pre-built binaries are provided for macOS (tested), with experimental builds for Linux and Windows (untested).
+
 ## Building from Source
 
 You can also build the timeout utility from source using standard Go commands:
@@ -138,15 +143,14 @@ You can also build the timeout utility from source using standard Go commands:
 git clone https://github.com/nzions/timeout.git
 cd timeout
 
-# Build the binary
+# Build the binary (macOS)
 go build -o timeout
 
-# Build optimized release version
+# Build optimized release version (macOS)
 go build -ldflags="-s -w" -o timeout
 
-# Build for different platforms
+# Experimental builds for other platforms (untested)
 GOOS=linux GOARCH=amd64 go build -o timeout-linux-amd64
-GOOS=darwin GOARCH=amd64 go build -o timeout-darwin-amd64
 GOOS=windows GOARCH=amd64 go build -o timeout-windows-amd64.exe
 ```
 

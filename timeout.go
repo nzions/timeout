@@ -3,6 +3,11 @@
 // This utility runs commands with a timeout, sending signals when the timeout
 // is exceeded and optionally escalating to KILL if the command doesn't respond.
 // It's designed to be 100% compatible with GNU coreutils timeout.
+//
+// Platform Support:
+// - macOS: Fully tested and supported (Intel and Apple Silicon)
+// - Linux: May work but untested
+// - Windows: May work but untested
 package main
 
 import (
