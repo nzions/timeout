@@ -32,7 +32,7 @@ jobs:
       run: go test -v -race -coverprofile=coverage.out ./...
     
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       with:
         file: ./coverage.out
         flags: unittests
@@ -62,7 +62,7 @@ jobs:
         GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -o timeout-windows-amd64.exe
     
     - name: Upload artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: binaries
         path: timeout-*
