@@ -4,7 +4,7 @@ A GNU coreutils `timeout` compatible utility for running commands with a timeout
 
 [![GitHub](https://img.shields.io/badge/GitHub-nzions%2Ftimeout-blue)](https://github.com/nzions/timeout)
 [![Go Report Card](https://goreportcard.com/badge/github.com/nzions/timeout)](https://goreportcard.com/report/github.com/nzions/timeout)
-[![codecov](https://codecov.io/gh/nzions/timeout/branch/main/graph/badge.svg)](https://codecov.io/gh/nzions/timeout)
+[![codecov](https://codecov.io/gh/nzions/timeout/branch/master/graph/badge.svg)](https://codecov.io/gh/nzions/timeout)
 [![License: CC0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
 
 ## Features
