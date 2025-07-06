@@ -1,3 +1,8 @@
+// Package main implements a GNU coreutils timeout compatible utility.
+//
+// This utility runs commands with a timeout, sending signals when the timeout
+// is exceeded and optionally escalating to KILL if the command doesn't respond.
+// It's designed to be 100% compatible with GNU coreutils timeout.
 package main
 
 import (
@@ -12,6 +17,12 @@ import (
 	"strings"
 	"syscall"
 	"time"
+)
+
+// Version information
+const (
+	Version = "1.0.0"
+	Author  = "github.com/nzions/timeout"
 )
 
 // Config holds all the configuration for the timeout command
@@ -134,7 +145,9 @@ func runTimeout(config Config, args []string) Result {
 	}
 
 	if config.Version {
-		fmt.Fprintln(config.Stdout, "timeout (GNU coreutils compatible) 1.0")
+		fmt.Fprintf(config.Stdout, "timeout (GNU coreutils compatible) %s\n", Version)
+		fmt.Fprintf(config.Stdout, "Source: %s\n", Author)
+		fmt.Fprintf(config.Stdout, "License: CC0 1.0 Universal (Public Domain)\n")
 		return Result{ExitCode: 0}
 	}
 

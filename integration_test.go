@@ -1,3 +1,7 @@
+// Package main contains integration tests for the timeout utility.
+//
+// These tests build the actual timeout binary and run it with various
+// command-line arguments to test real-world behavior.
 package main
 
 import (

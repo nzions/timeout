@@ -1,3 +1,7 @@
+// Package main contains unit tests for the timeout utility.
+//
+// These tests cover duration parsing, signal parsing, and other utility functions.
+// For end-to-end testing, see integration_test.go.
 package main
 
 import (
